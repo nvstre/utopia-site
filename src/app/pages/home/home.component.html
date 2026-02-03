@@ -1,135 +1,198 @@
-<header class="bg-slate-900 border-b border-gta-blue-800 p-4 sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <img src="images/logo_utopia.png" alt="Logo Utopia" class="h-10 w-10 object-contain rounded-lg">
-        <span class="text-2xl font-bold text-gta-text tracking-tighter">UTOPIA <span class="text-gta-blue-500">RPG</span></span>
-      </div>
-      
-      <nav class="hidden md:flex gap-8 mt-1 text-gta-text font-medium">
-        <a routerLink="/" class="hover:text-gta-blue-500 transition">Acasă</a>
-        <a href="#" class="hover:text-gta-blue-500 transition">Panel</a>
-        <a href="#" class="hover:text-gta-blue-500 transition">Wiki</a>
-        <a routerLink="discord" class="hover:text-white/80 transition bg-[#5865F2] px-4 py-1 -mt-1 rounded text-white">Discord</a>
-      </nav>
+<header 
+  [ngClass]="isScrolled ? 'bg-slate-900/90 backdrop-blur-md border-slate-800/50 p-4' : 'bg-transparent border-transparent p-6'"
+  class="fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b p-4 h-20 flex items-center">
+  
+  <div class="container mx-auto flex justify-between items-center px-4">
+    <div class="flex items-center gap-4 group cursor-pointer">
+      <img src="images/logo_utopia.png" alt="Logo" class="h-10 w-10 object-contain rounded-xl transition-transform group-hover:scale-110">
+      <span class="text-2xl font-bold text-white tracking-tighter">UTOPIA <span class="text-gta-blue-500">RPG</span></span>
     </div>
-  </header>
-  
-  <main class="bg-slate-950 text-gta-text min-h-screen">
     
-    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <nav class="hidden md:flex items-center gap-8 text-white font-medium">
+      <a routerLink="/" class="hover:text-gta-blue-400 transition-colors">Acasă</a>
+      <a href="#" class="hover:text-gta-blue-400 transition-colors">Panel</a>
+      <a href="#" class="hover:text-gta-blue-400 transition-colors">Wiki</a>
+      <a routerLink="discord" class="bg-[#5865F2] hover:bg-[#4752C4] px-6 py-2 rounded-full text-white transition-all shadow-lg active:scale-95">
+        Discord
+      </a>
+    </nav>
+
+    <button (click)="toggleMobileMenu()" class="md:hidden text-white p-2 absolute right-7 z-[999]">
+      <svg *ngIf="!isMobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+      <svg *ngIf="isMobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div 
+    class="fixed inset-0 bg-slate-950 z-[105] flex flex-col items-center justify-center gap-10 transition-all duration-500 md:hidden"
+    [ngClass]="isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'">
     
-      <div class="absolute inset-0 z-0">
-        <div 
-          class="w-full h-full bg-cover bg-center bg-fixed bg-no-repeat"
-          style="background-image: linear-gradient(rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.7)), url('images/background_utopia.png');">
-          </div>
-      </div>
-    
-      <div class="relative z-10 text-center px-4">
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 uppercase tracking-tighter text-gta-text">
-          Lansare pe <span class="text-gta-blue-500 drop-shadow-[0_0_15px_rgba(0,149,255,0.5)]">4 Aprilie</span>
-        </h1>
-        <p class="max-w-2xl mx-auto text-gray-200 text-lg md:text-xl font-light leading-relaxed">
-          Descoperă o lume definită de libertate și realism. <br class="hidden md:block">
-          <span class="font-semibold text-gta-blue-500">Utopia RPG</span> nu este doar un server, este o experiență socială construită pe o economie stabilă.
-        </p>
-        
-        <div class="mt-12 animate-bounce">
-            <svg class="w-6 h-6 mx-auto text-gta-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="Track 19 9l-7 7-7-7"></path>
-            </svg>
-        </div>
-      </div>
-    </section>
+    <div class="flex flex-col items-center gap-8">
+        <a (click)="closeMenu()" routerLink="/" class="text-white text-3xl font-bold uppercase tracking-wide hover:text-gta-blue-500 transition-colors">Acasă</a>
+        <a (click)="closeMenu()" href="#" class="text-white text-3xl font-bold uppercase tracking-wide hover:text-gta-blue-500 transition-colors">Panel</a>
+        <a (click)="closeMenu()" href="#" class="text-white text-3xl font-bold uppercase tracking-wide hover:text-gta-blue-500 transition-colors">Wiki</a>
+    </div>
+
+    <a (click)="closeMenu()" routerLink="discord" class="bg-[#5865F2] text-white px-14 py-5 rounded-full text-xl font-extrabold shadow-2xl shadow-blue-500/40 transform active:scale-95 transition-transform">
+      JOIN DISCORD
+    </a>
+  </div>
+</header>
+
+<main class="bg-slate-950 text-gta-text min-h-screen font-sans">
   
-    <section class="py-16 bg-slate-900/50">
-      <div class="container mx-auto grid md:grid-cols-3 gap-8 px-4">
-        <div class="p-6 border-l-4 border-gta-blue-500 bg-slate-900">
-          <h3 class="text-xl font-bold mb-2 uppercase">Economie Echilibrată</h3>
-          <p class="text-gray-400">Fiecare dolar contează. Muncește, investește și devino cel mai bogat cetățean fără inflație exagerată.</p>
-        </div>
-        <div class="p-6 border-l-4 border-gta-blue-500 bg-slate-900">
-          <h3 class="text-xl font-bold mb-2 uppercase">Sisteme Custom</h3>
-          <p class="text-gray-400">Scripturi optimizate și funcții pe care nu le vei mai găsi pe alte servere de GTA 5.</p>
-        </div>
-        <div class="p-6 border-l-4 border-gta-blue-500 bg-slate-900">
-          <h3 class="text-xl font-bold mb-2 uppercase">Staff Matur</h3>
-          <p class="text-gray-400">O echipă administrativă pregătită să ajute, nu să pedepsească, axată pe dezvoltarea comunității.</p>
-        </div>
+  <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div 
+        class="w-full h-full bg-cover bg-center bg-no-repeat"
+        style="background-image: 
+          linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0)), 
+          linear-gradient(to top, #020617 0%, rgba(2, 6, 23, 0) 60%), 
+          url('images/background_utopia.png');">
       </div>
-    </section>
+    </div>
   
-    <section class="py-20 bg-slate-900/30">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="border border-gta-blue-800/50 p-8 rounded-lg bg-gradient-to-br from-slate-900 to-black">
-          <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-            <span class="text-gta-blue-500 text-4xl">/</span> De ce FiveM și nu RageMP?
-          </h2>
-          <div class="space-y-4 text-gray-400 leading-relaxed">
-            <p>
-              Alegerea platformei a fost una strategică. Având în vedere anumite circumstanțe recente și comentariile unor foști membri ai echipei FiveM, am analizat atent toate riscurile posibile.
-            </p>
-            <p>
-              Am decis că <span class="text-gta-text font-semibold underline decoration-gta-blue-500">FiveM este calea cea mai sigură</span> pentru viziunea noastră. Această platformă ne oferă stabilitatea tehnică necesară pentru a garanta că munca noastră (și progresul vostru) nu va fi irosită.
-            </p>
-            <p class="text-gta-blue-500 font-medium">
-              Viitorul serverului Utopia RPG este 100% asigurat. Am ales stabilitatea în locul incertitudinii pentru a vă oferi o casă virtuală pe termen lung.
-            </p>
-          </div>
-        </div>
+    <div class="relative z-10 text-center px-4">
+      <div class="inline-block px-4 py-1 mb-4 border border-gta-blue-500/30 bg-gta-blue-500/10 backdrop-blur-sm rounded-full text-gta-blue-400 text-sm font-bold tracking-widest uppercase">
+        Pregătește-te de aventură
       </div>
-    </section>
-  
-    <section class="py-20 container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 uppercase tracking-widest">Întrebări Frecvente</h2>
-      
-      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <div class="bg-slate-900 p-6 rounded-lg border border-slate-800 hover:border-gta-blue-500/50 transition">
-          <h4 class="text-gta-blue-500 font-bold mb-2">Când este deschiderea oficială?</h4>
-          <p class="text-gray-400 text-sm">Lansarea oficială va avea loc pe data de 4 Aprilie. Ora exactă va fi anunțată pe Discord.</p>
+      <h1 class="text-6xl md:text-8xl font-black mb-6 uppercase tracking-tighter text-white">
+        Lansare <span class="text-gta-blue-500 drop-shadow-[0_0_25px_rgba(0,149,255,0.4)]">4 Aprilie</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-gray-300 text-lg md:text-xl font-light">
+        Utopia RPG este o experiență socială construită pe stabilitate.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 -mt-20 relative z-20">
+    <div class="container mx-auto grid md:grid-cols-3 gap-6 px-4">
+      <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl hover:border-gta-blue-500/50 transition-all group">
+        <div class="w-12 h-12 bg-gta-blue-500/10 rounded-2xl flex items-center justify-center mb-6 text-gta-blue-500 group-hover:scale-110 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path></svg>
         </div>
-    
-        <div class="bg-slate-900 p-6 rounded-lg border border-slate-800 hover:border-gta-blue-500/50 transition">
-          <h4 class="text-gta-blue-500 font-bold mb-2">Este un server Hard-RP sau Medium-RP?</h4>
-          <p class="text-gray-400 text-sm">
-            Utopia este un server <span class="text-white font-semibold">Non-RP</span>. Aici nu ești obligat să faci roleplay; te poți bucura de sistemele noastre, de mașini și de comunitate fără constrângerile unor reguli stricte de simulare a realității. Accentul nostru este pe distracție pură și libertate totală.
+        <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Economie Echilibrată</h3>
+        <p class="text-gray-400 leading-relaxed">Muncește, investește și devino cel mai bogat cetățean fără inflație exagerată.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl hover:border-gta-blue-500/50 transition-all group scale-105 bg-gradient-to-b from-slate-900 to-slate-900/50">
+        <div class="w-12 h-12 bg-gta-blue-500/10 rounded-2xl flex items-center justify-center mb-6 text-gta-blue-500 group-hover:scale-110 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Sisteme Custom</h3>
+        <p class="text-gray-400 leading-relaxed">Scripturi optimizate și funcții pe care nu le vei mai găsi pe alte servere de GTA 5.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl hover:border-gta-blue-500/50 transition-all group">
+        <div class="w-12 h-12 bg-gta-blue-500/10 rounded-2xl flex items-center justify-center mb-6 text-gta-blue-500 group-hover:scale-110 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3.005 3.005 0 013.75-2.906z"></path></svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Staff Matur</h3>
+        <p class="text-gray-400 leading-relaxed">O echipă administrativă pregătită să ajute, axată pe dezvoltarea comunității.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-950">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="border border-slate-800 p-10 rounded-[2rem] bg-gradient-to-br from-slate-900 to-slate-950 shadow-inner">
+        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+          <span class="text-gta-blue-500 text-4xl">/</span> De ce FiveM și nu RageMP?
+        </h2>
+        <div class="space-y-4 text-gray-400 leading-relaxed">
+          <p>
+            Alegerea platformei a fost una strategică. Având în vedere anumite circumstanțe recente și comentariile unor foști membri ai echipei FiveM, am analizat atent toate riscurile posibile.
+          </p>
+          <p>
+            Am decis că <span class="text-gta-text font-semibold underline decoration-gta-blue-500">FiveM este calea cea mai sigură</span> pentru viziunea noastră. Această platformă ne oferă stabilitatea tehnică necesară pentru a garanta că munca noastră (și progresul vostru) nu va fi irosită.
+          </p>
+          <p class="text-gta-blue-500 font-medium">
+            Viitorul serverului Utopia RPG este 100% asigurat. Am ales stabilitatea în locul incertitudinii pentru a vă oferi o casă virtuală pe termen lung.
           </p>
         </div>
-    
-        <div class="bg-slate-900 p-6 rounded-lg border border-slate-800 hover:border-gta-blue-500/50 transition">
-          <h4 class="text-gta-blue-500 font-bold mb-2">Cum pot deveni Beta Tester?</h4>
-          <p class="text-gray-400 text-sm">Poți aplica folosind butonul de mai sus sau direct pe serverul nostru de Discord în secțiunea dedicată.</p>
-        </div>
-    
-        <div class="bg-slate-900 p-6 rounded-lg border border-slate-800 hover:border-gta-blue-500/50 transition">
-          <h4 class="text-gta-blue-500 font-bold mb-2">Voi păstra progresul din Beta?</h4>
-          <p class="text-gray-400 text-sm">Testerii vor primi recompense exclusive la lansare, însă progresul bazei de date va fi resetat pentru un start egal pentru toți.</p>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <section class="py-20 container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-16 uppercase tracking-[0.2em] text-white">Întrebări Frecvente</h2>
+    
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <div class="bg-slate-900/40 p-8 rounded-[2rem] border border-slate-800 hover:border-gta-blue-500/30 transition-all">
+        <h4 class="text-gta-blue-400 font-bold mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 bg-gta-blue-500 rounded-full"></span>
+          Când este deschiderea oficială?
+        </h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Lansarea oficială va avea loc pe data de 4 Aprilie. Ora exactă va fi anunțată pe Discord.</p>
+      </div>
   
-    <section class="py-20 container mx-auto px-4">
-      <div class="bg-gta-blue-800/10 border border-gta-blue-500/30 rounded-2xl p-8 md:p-12 text-center">
-        <h2 class="text-3xl font-bold mb-4">Căutăm Beta Testeri!</h2>
-        <p class="mb-8 text-gray-300 max-w-xl mx-auto">
-          Vrei să ne ajuți să finisăm experiența Utopia? Aplică acum pentru acces anticipat și ajută-ne să identificăm bug-urile înainte de lansarea oficială.
+      <div class="bg-slate-900/40 p-8 rounded-[2rem] border border-slate-800 hover:border-gta-blue-500/30 transition-all">
+        <h4 class="text-gta-blue-400 font-bold mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 bg-gta-blue-500 rounded-full"></span>
+          Este un server Hard Roleplay?
+        </h4>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Utopia este un server <span class="text-white font-semibold">Non-RP</span>. Accentul nostru este pe distracție pură și libertate totală.
         </p>
-        <button class="bg-gta-blue-600 hover:bg-gta-blue-500 text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105">
+      </div>
+
+      <div class="bg-slate-900/40 p-8 rounded-[2rem] border border-slate-800 hover:border-gta-blue-500/30 transition-all">
+        <h4 class="text-gta-blue-400 font-bold mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 bg-gta-blue-500 rounded-full"></span>
+          Voi păstra progresul din Beta?
+        </h4>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Testerii vor primi recompense exclusive la lansare, însă progresul bazei de date va fi resetat pentru un start egal pentru toți.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/40 p-8 rounded-[2rem] border border-slate-800 hover:border-gta-blue-500/30 transition-all">
+        <h4 class="text-gta-blue-400 font-bold mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 bg-gta-blue-500 rounded-full"></span>
+          Cum pot deveni Beta Tester?
+        </h4>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Poți aplica folosind butonul de mai sus sau direct pe serverul nostru de Discord în secțiunea dedicată.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-20 container mx-auto px-4">
+    <div class="bg-gradient-to-r from-gta-blue-600 to-blue-700 rounded-[3rem] p-10 md:p-16 text-center shadow-2xl shadow-gta-blue-500/20 relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+      
+      <div class="relative z-10">
+        <h2 class="text-4xl font-black text-white mb-6 uppercase">Căutăm Beta Testeri!</h2>
+        <p class="mb-10 text-blue-100 max-w-xl mx-auto text-lg">
+          Vrei să ne ajuți să finisăm experiența Utopia? Aplică acum pentru acces anticipat.
+        </p>
+        <button 
+          class="bg-white text-gta-blue-700 hover:bg-gray-100 px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all transform hover:scale-105 active:scale-95 shadow-xl"
+          routerLink="discord"
+        >
           APLICĂ PENTRU BETA
         </button>
       </div>
-    </section>
-  
-    <section class="py-16 bg-gta-blue-800 text-white">
-      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
-        <div>
-          <h2 class="text-3xl font-bold">Fii la curent cu progresul</h2>
-          <p class="opacity-80">Postăm constant sneak-peaks cu sistemele noi pe canalul nostru de Discord.</p>
-        </div>
-        <a routerLink="discord" class="bg-white text-gta-blue-800 px-10 py-4 rounded font-black uppercase tracking-widest hover:bg-gray-100 transition">
-          ALĂTURĂ-TE COMUNITĂȚII
-        </a>
+    </div>
+  </section>
+
+  <section class="py-12 bg-slate-900 border-t border-slate-800">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="text-center md:text-left">
+        <h2 class="text-2xl font-bold text-white">Fii la curent cu progresul</h2>
+        <p class="text-gray-500">Postăm constant sneak-peaks pe canalul nostru de Discord.</p>
       </div>
-    </section>
-  
-  </main>
+      <a routerLink="discord" class="group flex items-center gap-3 bg-slate-800 hover:bg-slate-700 px-8 py-4 rounded-2xl transition-all border border-slate-700">
+        <span class="font-bold uppercase tracking-wider text-white">Alătură-te</span>
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
