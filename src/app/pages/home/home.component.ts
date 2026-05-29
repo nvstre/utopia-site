@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     RouterLink,
     NgClass,
@@ -15,6 +16,9 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent {
   isScrolled = false;
   isMobileMenuOpen = false;
+  
+  // 'roleplay' is the primary default project
+  currentSubproject: 'roleplay' | 'rpg' = 'roleplay';
 
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
@@ -23,10 +27,13 @@ export class HomeComponent {
     this.isScrolled = window.scrollY > 50;
   }
 
+  setSubproject(project: 'roleplay' | 'rpg') {
+    this.currentSubproject = project;
+  }
+
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
     
-    // Toggle scrolling on the body
     if (this.isMobileMenuOpen) {
       this.document.body.style.overflow = 'hidden';
     } else {
@@ -34,10 +41,8 @@ export class HomeComponent {
     }
   }
 
-  // Helper to close menu when a link is clicked
   closeMenu() {
     this.isMobileMenuOpen = false;
     this.document.body.style.overflow = 'auto';
   }
-
 }
