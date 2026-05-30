@@ -1,0 +1,109 @@
+<!-- ─── HEADER ───────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-side header-side--left">
+      <span class="header-meta">România</span>
+      <a routerLink="/discord" class="header-link">Discord</a>
+    </div>
+
+    <div class="header-logo">
+      <img src="images/logo_utopia.png" alt="UTOPIA" class="header-logo__img">
+      <span class="header-logo__name">Utopia</span>
+    </div>
+
+    <div class="header-side header-side--right">
+      <span class="header-meta">FiveM &bull; GTA V</span>
+      <a href="https://www.tiktok.com/@utopiarpg" class="header-link">TikTok</a>
+    </div>
+  </div>
+  <div class="header-rule"></div>
+</header>
+
+<!-- ─── MAIN STAGE ────────────────────────────────────────── -->
+<main class="stage"
+      [class.stage--rp-hover]="hoveredPanel === 'roleplay'"
+      [class.stage--rpg-hover]="hoveredPanel === 'rpg'"
+      (mouseleave)="hoveredPanel = null">
+
+  <!-- ─── ROLEPLAY PANEL ──────────────────────── -->
+  <a class="panel panel--rp"
+     routerLink="/roleplay"
+     (mouseenter)="hoveredPanel = 'roleplay'">
+
+    <div class="panel__bg" aria-hidden="true"></div>
+    <div class="panel__atmo" aria-hidden="true"></div>
+    <div class="panel__accent-line" aria-hidden="true"></div>
+    <div class="wm" aria-hidden="true">RP</div>
+
+    <span class="corner-num">01 — RP</span>
+
+    <div class="panel__content">
+      <span class="p-overline">FIVEM &bull; GTA V</span>
+      <h2 class="p-heading">ROLE<br>PLAY</h2>
+      <p class="p-tagline">Trăiește realul.</p>
+      <p class="p-desc">Economie vie, facțiuni active și o comunitate care nu doarme niciodată.</p>
+      <span href=#roleplay class="p-cta">Intră Acum <span class="p-cta__arrow">&#8594;</span></span>
+    </div>
+a
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-dot stat-dot--green"></div>
+        DESCHIDERE IN CURÂND
+      </div>
+      <div class="stat-item">VERY SOON</div>
+    </div>
+  </a>
+
+  <!-- ─── DIVIDER ─────────────────────────────── -->
+  <div class="divider" aria-hidden="true"></div>
+
+  <!-- ─── RPG PANEL ───────────────────────────── -->
+  <a class="panel panel--rpg"
+     (click)="openRpgPopup()"
+     (mouseenter)="hoveredPanel = 'rpg'"
+     style="cursor:pointer">
+
+    <div class="panel__bg" aria-hidden="true"></div>
+    <div class="panel__atmo" aria-hidden="true"></div>
+    <div class="panel__accent-line" aria-hidden="true"></div>
+    <div class="wm" aria-hidden="true">RPG</div>
+
+    <span class="corner-num">02 — RPG</span>
+    <div class="badge-dev">
+      <div class="badge-dev__dot"></div>ÎN DEZVOLTARE
+    </div>
+
+    <div class="panel__content">
+      <span class="p-overline">FIVEM &bull; GTA V</span>
+      <h2 class="p-heading">RPG</h2>
+      <p class="p-tagline">Regulile tale.</p>
+      <p class="p-desc">Progresie liberă, skill-uri reale și zero reguli stricte.</p>
+      <span class="p-cta">Descoperă <span class="p-cta__arrow">&#8594;</span></span>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-dot stat-dot--amber"></div>
+        ÎN DEZVOLTARE
+      </div>
+      <div class="stat-item">COMING SOON</div>
+    </div>
+  </a>
+</main>
+
+<!-- ─── COMING SOON POPUP ──────────────────────────────────── -->
+<div class="cs-overlay" [class.cs-overlay--open]="isRpgPopupOpen" (click)="closeRpgPopup()">
+  <div class="cs-modal" (click)="$event.stopPropagation()">
+    <button class="cs-close" (click)="closeRpgPopup()" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M1 1l12 12M13 1L1 13"/>
+      </svg>
+    </button>
+    <span class="cs-overline">02 — RPG</span>
+    <h2 class="cs-title">COMING<br>SOON</h2>
+    <p class="cs-desc">Suntem în plin proces de dezvoltare. Fii primul care află când lansăm.</p>
+    <a routerLink="/discord" (click)="closeRpgPopup()" class="cs-btn">
+      Intră pe Discord <span>&#8594;</span>
+    </a>
+  </div>
+</div>
