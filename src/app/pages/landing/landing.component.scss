@@ -450,6 +450,65 @@ app-landing {
   }
   .panel--rp  .panel__accent-line { background: linear-gradient(90deg, transparent, rgba(0, 149, 255, 0.7) 50%, transparent); }
   .panel--rpg .panel__accent-line { background: linear-gradient(90deg, transparent, rgba(140, 0, 255, 0.5) 50%, transparent); }
+
+  /* ─── MOBILE ───────────────────────────────── */
+  @media (max-width: 768px) {
+    /* Header — hide meta labels, tighten padding */
+    .header-inner { padding: 0 20px; }
+    .header-meta { display: none; }
+
+    /* Stage — stack panels top/bottom */
+    .stage {
+      flex-direction: column;
+      height: calc(100vh - 64px);
+      overflow: hidden;
+    }
+
+    /* Each panel exactly half height */
+    .panel { flex: 0 0 50%; min-height: 0; }
+
+    /* Disable expand-on-hover for touch */
+    .stage--rp-hover  .panel--rp,
+    .stage--rp-hover  .panel--rpg,
+    .stage--rpg-hover .panel--rpg,
+    .stage--rpg-hover .panel--rp {
+      flex: 0 0 50%;
+      filter: none;
+    }
+    .stage--rp-hover  .panel--rp  .panel__bg,
+    .stage--rpg-hover .panel--rpg .panel__bg { transform: none; }
+
+    /* Divider becomes horizontal */
+    .divider {
+      width: 100%;
+      height: 1px;
+      flex-shrink: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14) 50%, transparent);
+      &::after { display: none; }
+    }
+
+    /* Content — less padding, vertically centered */
+    .panel__content { padding: 0 28px 52px; }
+
+    /* Headings scale down for mobile panels */
+    .p-heading { font-size: clamp(56px, 18vw, 100px); }
+    .panel--rpg .p-heading { font-size: clamp(80px, 26vw, 140px); }
+    .p-tagline { font-size: clamp(14px, 4vw, 20px); }
+    .p-desc { font-size: 12px; }
+
+    /* Watermark — shrink so it doesn't overflow panel */
+    .wm { font-size: clamp(100px, 32vw, 200px); }
+
+    /* Corner num, badge */
+    .panel--rp  .corner-num { left: 18px; top: 18px; }
+    .panel--rpg .corner-num { right: 18px; top: 18px; }
+    .badge-dev { top: 18px; left: 18px; }
+
+    /* Stat strip */
+    .stat-strip { padding: 0 18px; height: 44px; }
+    .stat-item { font-size: 8px; letter-spacing: 0.12em; }
+    .stat-item:last-child { display: none; }
+  }
 }
 
 /* ─── COMING SOON POPUP ──────────────────────────────────── */

@@ -612,9 +612,65 @@ section { position: relative; overflow: hidden; }
   .stats-bar-inner { grid-template-columns: 1fr 1fr; }
   .manifesto-inner, .features-header, .features-grid,
   .stats-bar-inner, .spotlight-inner, .join-inner,
-  .footer-cta-inner { padding-left: 24px; padding-right: 24px; }
-  .hero { padding-left: 24px; padding-right: 24px; }
-  .hero__stat-strip { padding: 0 24px; }
+  .footer-cta-inner { padding-left: 20px; padding-right: 20px; }
+  .hero { padding-left: 20px; padding-right: 20px; }
+  .hero__stat-strip { padding: 0 20px; }
+}
+
+/* ─── MOBILE ─────────────────────────────── */
+@media (max-width: 640px) {
+  /* Header — hide meta, fit on one line */
+  .header-inner { padding: 0 16px; }
+  .header-meta { display: none; }
+  .header-back { gap: 5px; }
+  .header-logo__name { display: none; }
+
+  /* Hero */
+  .hero { padding: 72px 20px 72px; }
+  .hero__title { font-size: clamp(56px, 20vw, 100px); margin-bottom: 16px; }
+  .hero__tagline { font-size: clamp(18px, 5vw, 26px); }
+  .hero__desc { font-size: 13px; }
+  .hero__cta-row { flex-direction: column; width: 100%; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+
+  /* Hero stat strip — show fewer items */
+  .hero__stat-strip { padding: 0 20px; gap: 0; justify-content: space-between; }
+  .hero__stat-strip .stat-item:nth-child(3),
+  .hero__stat-strip .stat-item:nth-child(4) { display: none; }
+
+  /* Manifesto */
+  .manifesto { padding: 64px 0; }
+
+  /* Features */
+  .features { padding: 64px 0; }
+  .features-header { padding: 0 20px; margin-bottom: 32px; }
+  .feat-card { padding: 28px 20px 32px; }
+
+  /* Stats bar */
+  .stats-bar { padding: 48px 0; }
+  .stat-block { padding: 0 20px 20px; }
+  .stat-block:last-child { padding-bottom: 0; }
+
+  /* Spotlights */
+  .spotlight, .spotlight--alt { padding: 64px 0; }
+  .spotlight-inner { padding: 0 20px; gap: 32px; }
+  .spotlight__heading { font-size: clamp(32px, 10vw, 52px); }
+  .spotlight__bignum { font-size: clamp(80px, 24vw, 140px); }
+
+  /* Steps */
+  .join { padding: 64px 0; }
+  .join-inner { padding: 0 20px; }
+  .join-header { margin-bottom: 40px; }
+  .step { padding: 28px 20px 32px; }
+
+  /* Footer CTA */
+  .footer-cta { padding: 80px 0 56px; }
+  .footer-cta-inner { padding: 0 20px; }
+  .footer-cta__btns { flex-direction: column; width: 100%; }
+  .footer-cta__btns .btn-primary,
+  .footer-cta__btns .btn-ghost { width: 100%; justify-content: center; }
+  .footer-links { flex-wrap: wrap; gap: 16px; justify-content: center; }
+  .footer-copyright { margin-left: 0; width: 100%; text-align: center; }
 }
 
 /* ─── REDUCED MOTION FALLBACK ────────────── */
